@@ -37,4 +37,11 @@ o	77% precision for churn predictions (moderate false alarms).
 2.	Weaknesses:
 o	Misses 51% of true churners (low recall).
 
-![image](https://github.com/user-attachments/assets/eaf0a320-43ee-4b26-b92d-a5e3b3814115)
+Key Takeaways:
+1.	Strengths:
+o	96% accurate in identifying retained customers.
+o	77% precision for churn predictions (moderate false alarms).
+2.	Weaknesses:
+o	Misses 51% of true churners (low recall).
+![image](https://github.com/user-attachments/assets/e24dbe00-205f-4751-be09-2302570fa50f)
+
