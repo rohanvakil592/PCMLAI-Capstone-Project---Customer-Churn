@@ -1,0 +1,43 @@
+## Motivation
+-	Purpose: Created to predict customer churn (account closures) for banks, enabling proactive retention strategies.
+-	Creator: Unknown (uploaded to Kaggle by user Shantanu Dhakad). Likely synthetic/generated for educational purposes.
+-	Funding: Unknown.
+
+## Composition
+-	Instances: Each row represents a bank customer with features like credit score, account balance, and demographics.
+-	Count: 10,000 instances (customers).
+o	Churn Rate: 20% (2,000 churned vs. 8,000 retained).
+-	Missing Data: No missing values (clean synthetic dataset).
+-	Confidential Data: None (no real identifiers like names or account numbers).
+
+## Collection Process
+-	Acquisition Method: Likely simulated/generated (not real-world data).
+-	Sampling Strategy: Unknown (assumed random if synthetic).
+-	Time Frame: Unknown.
+
+## Preprocessing/Cleaning/Labeling
+-	Preprocessing:
+o	Categorical variables (e.g., Geography, Gender) have been encoded.
+o	No missing values or outliers reported.
+-	Raw Data: Only the cleaned version is available (no "raw" data provided).
+-	Removed variables “CustomerId”, “Surname” and “RowNumber” since they are not used descriptive for identifying customers and do not contain relevant information for the model.
+
+## Uses
+-	Potential Tasks:
+o	Customer segmentation.
+o	Lifetime value prediction.
+o	Bias detection in banking services (e.g., by geography/gender).
+-	Risks/Limitations:
+o	Bias: Overrepresents French customers (50%) vs. Spain/Germany. Gender imbalance (55% Male).
+o	Harm: Could perpetuate biases if used for loan approvals (not recommended).
+-	Mitigations:
+o	Balance classes (e.g., SMOTE for churn cases).
+o	Audit model fairness (e.g., check performance by gender/region).
+-	Not Recommended For: Credit scoring, loan approvals, or any high-stakes decisions.
+
+## Distribution
+-	Current Distribution: Publicly available on Kaggle under CC0: Public Domain License.
+-	IP/Copyright: None (free to use/modify).
+
+Maintenance
+-	Maintainer: Unmaintained (static dataset). No updates or versioning history.
