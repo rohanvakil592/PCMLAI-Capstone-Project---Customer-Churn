@@ -1,0 +1,77 @@
+Input:
+•	Features:
+o	Numerical: CreditScore, Age, Balance, NumOfProducts, HasCrCard, IsActiveMember, EstimatedSalary.
+o	Categorical (one-hot encoded): Geography (France/Germany/Spain), Gender (Male/Female).
+•	Input Format: CSV or Pandas DataFrame (preprocessed as in churn_analysis.ipynb).
+Output:
+•	Binary classification (0 = retained, 1 = churned).
+•	Output Format: Probability (0–1) or binary prediction (threshold = 0.5).
+Model Architecture:
+•	Algorithm: Random Forest Classifier (100 trees, max_depth=10).
+•	Libraries: Scikit-learn (Python).
+•	Hyperparameters:
+o	class_weight="balanced" (to address churn class imbalance).
+o	random_state=42 (reproducibility).
+
+Performance
+Metrics (Test Set, 20% Holdout):
+Metrics (Test Set, 20% Holdout | 2,000 samples):
+Metric	Class 0 (Retained)	Class 1 (Churned)	Overall
+Precision	0.89	0.77	0.86 (weighted avg)
+Recall	0.96	0.49	0.87 (weighted avg)
+F1-Score	0.92	0.60	0.86 (weighted avg)
+Support (Count)	1,609	391	2,000
+Accuracy: 87.15%
+
+Key Insights
+1.	High Retention Prediction (Class 0):
+o	Recall 0.96: Correctly identifies 96% of retained customers (low false negatives).
+o	Precision 0.89: 11% of predicted "retained" customers might still churn.
+2.	Churn Prediction Challenges (Class 1):
+o	Recall 0.49: Only detects 49% of true churners (misses half).
+o	Precision 0.77: 23% of flagged "churn" predictions are false alarms.
+3.	Imbalance Impact:
+o	Model favors majority class (retained customers: 80.5% of test data).
+o	Macro F1 (0.76) << Weighted F1 (0.86) highlights class skew.
+ 
+Confusion Matrix (Predicted vs. Actual)
+	Predicted Retained	Predicted Churned
+Actual Retained	1,545	64
+Actual Churned	200	191
+
+
+
+Limitations
+1.	Class Imbalance: Only 20% churn cases → Model biases toward majority class (retained customers).
+2.	Geographic Bias: Trained on 50% French customers → May generalize poorly to other regions.
+3.	Feature Sensitivity: Relies heavily on Balance and Age; may overlook nuanced behavioral patterns.
+4.	Ethical Risks: Gender/geography features could introduce discrimination if misused (e.g., denying services).
+
+
+Trade-offs
+1.	Precision vs. Recall:
+o	Higher precision reduces false alarms (good for minimizing retention campaign costs).
+o	Low recall means many churners are missed (bad for customer retention goals).
+o	Mitigation: Adjust classification threshold (e.g., threshold = 0.3 improves recall but lowers precision).
+2.	Interpretability vs. Performance:
+o	Random Forest is more interpretable than deep learning but may underperform vs. XGBoost.
+o	Trade-off: Used Random Forest for explainability (feature importances) over marginal accuracy gains.
+3.	Bias vs. Coverage:
+o	Including Gender improves accuracy but risks discriminatory outcomes.
+o	Trade-off: Kept for realism but added ethical warnings in documentation.
+
+
+Recommendations for Use
+•	Do:
+o	Flag at-risk customers for retention offers (e.g., discounts).
+o	Audit model fairness by subgroup (e.g., compare recall by Geography).
+•	Don’t:
+o	Use for loan approvals, credit scoring, or any legally sensitive decisions.
+o	Deploy without monitoring (e.g., track real-world churn rates vs. predictions).
+
+
+How to Improve
+1.	Address Class Imbalance: Use SMOTE or stratified sampling.
+2.	Boost Recall: Try XGBoost or logistic regression with class weights.
+3.	Fairness Checks: Evaluate metrics by gender/region (see docs/datasheet.md).
+
